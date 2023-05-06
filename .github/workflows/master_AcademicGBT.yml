@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://academicgbt.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_6773a64959f94e468d639b1dd98da46f }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_0bdf3007adc44b9bbaecb895d89498c5 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_00330b44635b47cba2f781c2aee60416 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_0f5131142b6b4d14bc1c642db5748cba }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: academicgbt.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6773a64959f94e468d639b1dd98da46f }}/AcademicGBT:${{ github.sha }}
+        tags: academicgbt.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_00330b44635b47cba2f781c2aee60416 }}/academicgbt:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'AcademicGBT'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1ad196f2de0a45a5a52371b3f6dddaff }}
-        images: 'academicgbt.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6773a64959f94e468d639b1dd98da46f }}/AcademicGBT:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_832b99a417fa42a781ba95d6d5f173b3 }}
+        images: 'academicgbt.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_00330b44635b47cba2f781c2aee60416 }}/academicgbt:${{ github.sha }}'
